@@ -25,7 +25,7 @@ Route::group(['prefix' => 'admin'], function (){
 });
 
 // Frontend API
-Route::group(['prefix' => 'frontend'], function (){
+Route::group(['prefix' => 'frontend/'], function (){
     Route::post('login', [AuthController::class, 'login']);
     Route::post('register', [AuthController::class, 'register']);
 });
