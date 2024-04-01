@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\API\Frontend\AuthController;
+use App\Http\Controllers\API\Frontend\Chat\OpenAIController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -26,6 +27,12 @@ Route::group(['prefix' => 'admin'], function (){
 
 // Frontend API
 Route::group(['prefix' => 'frontend/'], function (){
+//    Auth
     Route::post('login', [AuthController::class, 'login']);
     Route::post('register', [AuthController::class, 'register']);
+
+    // OpenAI
+    Route::post('/chat', [OpenAIController::class, 'chat']);
 });
+
+
