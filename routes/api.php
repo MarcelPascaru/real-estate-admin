@@ -22,21 +22,21 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 // Admin API
-Route::group(['prefix' => 'admin'], function (){
+Route::group(['prefix' => 'admin'], function () {
     //
 });
 
 // Frontend API
-Route::group(['prefix' => 'frontend/'], function (){
+Route::group(['prefix' => 'frontend/'], function () {
     // Auth
     Route::post('login', [AuthController::class, 'login']);
     Route::post('register', [AuthController::class, 'register']);
 
     // Real estates
-    Route::get('/real-estates', [RealEstateController::class, 'readAll']);
+    Route::post('/real-estates/search', [RealEstateController::class, 'search']);
 
     // OpenAI
-    Route::post('/chat', [OpenAIController::class, 'chat']);
+    Route::post('chat', [OpenAIController::class, 'chat']);
 });
 
 
