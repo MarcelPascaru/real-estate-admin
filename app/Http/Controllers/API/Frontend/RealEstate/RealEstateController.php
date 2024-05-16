@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\API\Frontend\RealEstate;
 
 use App\Http\Controllers\API\RestResponseFactory;
+use App\Http\Requests\RealEstateSearchRequest;
 use Exception;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\DB;
@@ -12,11 +13,26 @@ class RealEstateController
     /**
      * Constructor.
      *
+     * @param RealEstateSearcher $realEstateSearcher
      * @param RestResponseFactory $restResponseFactory
      */
     public function __construct(
+        private readonly RealEstateSearcher $realEstateSearcher,
         private readonly RestResponseFactory $restResponseFactory,
     ) {
+    }
+
+    public function search(RealEstateSearchRequest $request): JsonResponse
+    {
+        try {
+            $input = $request->validated();
+
+            $estates = $this->realEstateSearcher->search($input);
+
+            return $this->restResponseFactory->ok($estates);
+        } catch (Exception $exception) {
+            return $this->restResponseFactory->serverError($exception);
+        }
     }
 
     /**
