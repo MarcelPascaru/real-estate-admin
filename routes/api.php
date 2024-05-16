@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\API\Frontend\AuthController;
 use App\Http\Controllers\API\Frontend\Chat\OpenAIController;
+use App\Http\Controllers\API\Frontend\RealEstate\RealEstateController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -27,9 +28,12 @@ Route::group(['prefix' => 'admin'], function (){
 
 // Frontend API
 Route::group(['prefix' => 'frontend/'], function (){
-//    Auth
+    // Auth
     Route::post('login', [AuthController::class, 'login']);
     Route::post('register', [AuthController::class, 'register']);
+
+    // Real estates
+    Route::get('/real-estates', [RealEstateController::class, 'readAll']);
 
     // OpenAI
     Route::post('/chat', [OpenAIController::class, 'chat']);

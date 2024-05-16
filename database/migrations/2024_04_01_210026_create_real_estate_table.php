@@ -20,8 +20,8 @@ return new class extends Migration
             $table->string('category');
             $table->integer('price');
             $table->string('location')->nullable();
-            $table->integer('lat')->nullable();
-            $table->integer('lng')->nullable();
+            $table->decimal('lat',10, 8)->nullable();
+            $table->decimal('lng',10, 8)->nullable();
             $table->timestamps();
         });
     }
