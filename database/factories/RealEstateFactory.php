@@ -31,8 +31,8 @@ class RealEstateFactory extends Factory
             'phone_number' => $this->faker->phoneNumber,
             'price' => number_format($this->faker->numberBetween(40, 70), 2),
             'location' => $this->faker->city(),
-            'lat' => $this->faker->latitude(($lang-mt_rand(0,20)), ($lang+mt_rand(0,20))),
-            'lng' => $this->faker->longitude(($long-mt_rand(0,20)), ($long+mt_rand(0,20))),
+            'lat' => $this->faker->latitude($min = ($lang - (rand(0,10000) / 1000)), $max = ($lang + (rand(0,10000) / 1000))),
+            'lng' => $this->faker->longitude($min = ($long - (rand(0,10000) / 1000)), $max = ($long + (rand(0,10000) / 1000))),
             'created_at' => now()->addMinutes(),
             'updated_at' => now()->addMinutes(),
         ];
